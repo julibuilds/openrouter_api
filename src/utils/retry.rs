@@ -21,6 +21,7 @@ pub mod operations {
     pub const GET_GENERATION: &str = "get_generation";
     pub const STRUCTURED_GENERATE: &str = "structured_generate";
     pub const CHAT_COMPLETION: &str = "chat_completion";
+    pub const EMBEDDINGS: &str = "embeddings";
 }
 
 /// Executes an HTTP request with retry logic using a closure for request building

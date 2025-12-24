@@ -435,6 +435,39 @@ impl OpenRouterClient<Ready> {
         crate::api::generation::GenerationApi::new(client, &self.config)
     }
 
+    /// Provides access to the embeddings endpoint.
+    ///
+    /// # Example
+    /// ```rust,no_run
+    /// use openrouter_api::OpenRouterClient;
+    /// use openrouter_api::types::embeddings::EmbeddingRequest;
+    ///
+    /// # async fn example() -> Result<(), Box<dyn std::error::Error>> {
+    /// let client = OpenRouterClient::from_env()?;
+    ///
+    /// // Create embeddings
+    /// let response = client.embeddings()?
+    ///     .create(EmbeddingRequest::new(
+    ///         "openai/text-embedding-3-small",
+    ///         "Hello, world!"
+    ///     ))
+    ///     .await?;
+    ///
+    /// // Or use the simple helper
+    /// let embedding = client.embeddings()?
+    ///     .embed("openai/text-embedding-3-small", "Hello, world!")
+    ///     .await?;
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn embeddings(&self) -> Result<crate::api::embeddings::EmbeddingsApi> {
+        let client = self
+            .http_client
+            .clone()
+            .ok_or_else(|| Error::ConfigError("HTTP client is missing".into()))?;
+        crate::api::embeddings::EmbeddingsApi::new(client, &self.config)
+    }
+
     /// Returns a new request builder for chat completions that supports MCP.
     pub fn chat_request_builder(
         &self,

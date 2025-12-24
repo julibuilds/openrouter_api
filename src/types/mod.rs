@@ -3,6 +3,7 @@ pub mod chat;
 pub mod common;
 pub mod completion;
 pub mod credits;
+pub mod embeddings;
 pub mod generation;
 pub mod models;
 pub mod provider;

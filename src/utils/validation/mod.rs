@@ -38,6 +38,7 @@
 pub mod chat;
 pub mod common;
 pub mod completion;
+pub mod embeddings;
 pub mod web_search;
 
 // Re-export commonly used validation functions for convenience
@@ -48,6 +49,7 @@ pub use common::{
     validate_sampling_parameters, validate_string_length, validate_url,
 };
 pub use completion::{check_prompt_token_limits, validate_completion_request};
+pub use embeddings::validate_embedding_request;
 pub use web_search::{
     estimate_query_complexity, validate_and_suggest_query_improvement,
     validate_results_for_complexity, validate_web_search_request,
